@@ -160,14 +160,15 @@ pressure_vector = (densities_vector - 1) * cs2;
 
 
 file = load('openlb_rho.mat');
-openlb_rho = file.space_time_openlb;             
+openlb_rho = file.openlb_rho;             
 openlb_pressure = (openlb_rho(1:length(openlb_rho)-1) - 1) * cs2;
 
 [p pos]=cylin_wave((1/sqrt(3))/20,visc_phy,1/sqrt(3),A/20,1:Nc/2,pi/2);
 figure;
-plot(pos,p,'b', [1:Nl/2], pressure_vector, 'r');
-%plot(pos,p*cs2,'b', [1:Nl/2], pressure_vector, 'r',...
-%[1:Nl/2], openlb_pressure, 'g');
+%plot(pos,p,'b', [1:Nl/2], pressure_vector, 'r');
+plot(pos,p,'b', [1:Nl/2], pressure_vector, 'r',...
+[1:Nl/2], openlb_pressure, 'g');
+legend('Analytical Solution','Matlab Simulation','OpenLB Simulation');
 
 %load densi.mat densi
 % figure;
